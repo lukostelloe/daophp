@@ -46,11 +46,11 @@ require_once 'voiture.php';
 
     <table id="cartable">
       <tr>
+        <th>id</th>
         <th>Regist</th>
         <th>Colour</th>
         <th>Make</th>
         <th>Model</th>
-        <th></th>
       </tr>
       <!-- <tr>
         <td></td>
