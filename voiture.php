@@ -9,7 +9,7 @@ class Voiture extends VoitureDAO
         $sth = $this->db->prepare($request);
         return $this->getSelfObjectsPreparedStatement($sth);
     }
-    public function addNew()
+    public function addNewRow()
     {
         // j'ai pas de formulaire pour testé:::: mais la c'est correct ! 
         $registration = $_POST["registration"];
