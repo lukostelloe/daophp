@@ -52,8 +52,13 @@ require_once 'voiture.php';
         <th>Model</th>
         <th>Delete</th>
       </tr>
+<<<<<<< HEAD
+      <tr>
+        <td id="tablecell"></td>
+=======
       <!-- <tr>
         <td></td>
+>>>>>>> main
         <td></td>
         <td></td>
         <td></td>
