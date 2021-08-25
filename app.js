@@ -14,10 +14,9 @@ fetch("./cars.json")
       for (const key in element) {
         if (Object.hasOwnProperty.call(element, key)) {
           const elem = element[key];
-          console.log(elem);
           let cell = document.createElement("td");
           row.appendChild(cell);
-          row.innerHTML = elem;
+          cell.innerHTML = elem;
         }
       }
     });
