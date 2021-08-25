@@ -1,4 +1,4 @@
-const tablecell = document.getElementById("tablecell");
+const table = document.getElementById("cartable");
 
 fetch("./cars.json")
   .then((response) => {
@@ -7,15 +7,28 @@ fetch("./cars.json")
   })
   .then((data) => {
     // Work with JSON data here
-    console.log(data);
+    // console.log(data);
     data.forEach((element) => {
+      // ROW
+      let row = document.createElement("tr");
+      table.appendChild(row);
       for (const key in element) {
+        //CELLS
         if (Object.hasOwnProperty.call(element, key)) {
-          const elem = element[key];
-          console.log(elem);
-          tablecell.innerHTML = elem;
+          if (key != "id") {
+            const elem = element[key];
+            let cell = document.createElement("td");
+            row.appendChild(cell);
+            cell.innerHTML = elem;
+          }
         }
       }
+      let cell = document.createElement("td");
+      row.appendChild(cell);
+      let img = document.createElement("img");
+      cell.appendChild(img);
+      img.setAttribute("src", " bin.png");
+      img.style.width = "30px";
     });
   })
   .catch((err) => {

@@ -50,10 +50,15 @@ require_once 'voiture.php';
         <th>Colour</th>
         <th>Make</th>
         <th>Model</th>
-        <th></th>
+        <th>Delete</th>
       </tr>
+<<<<<<< HEAD
       <tr>
         <td id="tablecell"></td>
+=======
+      <!-- <tr>
+        <td></td>
+>>>>>>> main
         <td></td>
         <td></td>
         <td></td>
@@ -93,7 +98,7 @@ require_once 'voiture.php';
         <td></td>
         <td></td>
         <td></td>
-      </tr>
+      </tr> -->
     </table>
   </div>
 
