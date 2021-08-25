@@ -1,0 +1,56 @@
+#title {
+  display: flex;
+  justify-content: center;
+}
+
+#interface {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#input {
+  display: flex;
+  flex-direction: column;
+}
+
+#bin {
+  width: 20px;
+  height: 20px;
+}
+
+.inputbox {
+  padding: 5px;
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+#cartable {
+  float: right;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#addcarbutton {
+  background-color: rgb(58, 58, 248);
+  color: white;
+}
