@@ -4,7 +4,9 @@ add information from database into table,
 get bin button to work,
 get input status of database to turn green on success -->
 
-
+<?php
+require_once 'voiture.php';
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,7 +18,6 @@ get input status of database to turn green on success -->
 </head>
 
 <body>
-
   <h1 id="title">Car Record Input</h1>
 
   <div id="interface">
@@ -24,7 +25,7 @@ get input status of database to turn green on success -->
 
       <!-- method and action to conn.php -->
 
-      <form name="formCar" method="post" action="">
+      <form name="formCar" method="post" action="testForm.php">
         <label for="name">Registration</label>
         <input type="text" name="registration" id="registration" class="inputbox">
 
