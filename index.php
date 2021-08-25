@@ -51,6 +51,7 @@ require_once 'voiture.php';
         <th>Colour</th>
         <th>Make</th>
         <th>Model</th>
+        <th></th>
       </tr>
       <!-- <tr>
         <td></td>
