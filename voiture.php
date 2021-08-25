@@ -26,4 +26,16 @@ class Voiture extends VoitureDAO
         $sth = $this->db->prepare($request);
         return $this->getSelfObjectsPreparedStatement($sth);
     }
+    public function decodeJson()
+    {
+        $jsonString = $this->findALL();
+        $data = json_encode($jsonString);
+        $bytes = file_put_contents("cars.json", $data);
+        return $bytes;
+    }
+    // public function updateRow($id){
+    //     $request = "UPDATE cartable SET registration = $_POST[], colour, make, model WHERE id = $id";
+    //     $sth = $this->db->prepare($request);
+    //     return $this->getSelfObjectsPreparedStatement($sth);
+    // }
 }
