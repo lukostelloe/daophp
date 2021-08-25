@@ -52,7 +52,7 @@ get input status of database to turn green on success -->
         <th></th>
       </tr>
       <tr>
-        <td></td>
+        <td id="tablecell"></td>
         <td></td>
         <td></td>
         <td></td>
