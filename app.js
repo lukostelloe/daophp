@@ -1,6 +1,6 @@
 const tablecell = document.getElementById("tablecell");
 
-fetch("http://localhost/php/cartable/")
+fetch("./cars.json")
   .then((response) => {
     console.log(response);
     return response.json();
@@ -8,7 +8,15 @@ fetch("http://localhost/php/cartable/")
   .then((data) => {
     // Work with JSON data here
     console.log(data);
-    tablecell.innerHTML = data;
+    data.forEach((element) => {
+      for (const key in element) {
+        if (Object.hasOwnProperty.call(element, key)) {
+          const elem = element[key];
+          console.log(elem);
+          tablecell.innerHTML = elem;
+        }
+      }
+    });
   })
   .catch((err) => {
     // Do something for an error here
