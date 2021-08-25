@@ -52,7 +52,7 @@ require_once 'voiture.php';
         <th>Model</th>
         <th></th>
       </tr>
-      <tr>
+      <!-- <tr>
         <td></td>
         <td></td>
         <td></td>
@@ -93,7 +93,7 @@ require_once 'voiture.php';
         <td></td>
         <td></td>
         <td></td>
-      </tr>
+      </tr> -->
     </table>
   </div>
 
