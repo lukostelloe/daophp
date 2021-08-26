@@ -13,7 +13,12 @@ function createTable(element) {
         const elem = element[key];
         let cell = document.createElement("td");
         row.appendChild(cell);
-        cell.innerHTML = elem;
+
+        let input = document.createElement("input");
+        cell.appendChild(input);
+        input.value = elem;
+
+        // cell.innerHTML = elem;
       }
     }
   }
@@ -117,7 +122,7 @@ formulaire.addEventListener(
       let z;
       console.log(Array.from(formulaire.children));
       if (i % 2 == 1) {
-        z = Array.from(formulaire.children)[i];
+        z = Array.from(formulaire.children)[i].firstChild;
         form.append(z.name, z.value);
         keepValue.push(z.value);
       }

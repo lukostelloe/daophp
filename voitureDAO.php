@@ -1,5 +1,6 @@
 <?php
 require_once 'DAO.php';
+
 abstract class VoitureDAO extends EntityBase
 {
     public function getRegistration()
@@ -9,7 +10,7 @@ abstract class VoitureDAO extends EntityBase
 
     public function setRegistration($registration)
     {
-        $this->id = $registration;
+        $this->registration = $registration;
     }
     ////
     public function getColour()
