@@ -22,10 +22,12 @@ class Voiture extends VoitureDAO
     }
     public function deleteRow()
     {
-        $registration = $_POST["registration"];
-        $request = "DELETE FROM cartable WHERE registration = $registration";
-        $sth = $this->db->prepare($request);
-        return $this->getSelfObjectsPreparedStatement($sth);
+        if (isset($_GET["registration"])) {
+            $registration = $_GET["registration"];
+            $request = "DELETE FROM cartable WHERE registration = $registration";
+            $sth = $this->db->prepare($request);
+            return $this->getSelfObjectsPreparedStatement($sth);
+        }
     }
     public function encodeJson()
     {

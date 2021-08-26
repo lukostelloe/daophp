@@ -1,8 +1,8 @@
-///****************************************************************VARIABLEs GLOBALES********************************************************** */
+///****************************************************************VARIABLES GLOBALES********************************************************** */
 const table = document.getElementById("cartable");
 const formulaire = document.querySelector("#formulaire");
 let form;
-///*************************************************************************FONCTIONS********************************************************** */
+///*********************************************************************FONCTIONS********************************************************** */
 function createTable(element) {
   let row = document.createElement("tr");
   table.appendChild(row);
@@ -28,9 +28,7 @@ function createTable(element) {
     event.preventDefault();
     table.removeChild(row);
     // delete element;
-    form = new FormData();
-    form.append("json", "registration");
-    deleteThis();
+    deleteThis(element.registration);
   });
 }
 function drawRow(element) {
@@ -53,9 +51,7 @@ function drawRow(element) {
     event.preventDefault();
     table.removeChild(row);
     // delete element;
-    form = new FormData();
-    form.append("registration", "registration");
-    deleteThis();
+    deleteThis(element.registration);
   });
 }
 
@@ -79,9 +75,8 @@ function fetchit() {
 }
 fetchit();
 
-function deleteThis() {
-  $init = { method: "POST", body: form };
-  fetch("./deleteVoiture.php", $init)
+function deleteThis(get) {
+  fetch(`./deleteVoiture.php?registration=${get}`)
     .then((response) => {
       console.log(response);
       return response.json();
