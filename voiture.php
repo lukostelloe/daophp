@@ -20,9 +20,10 @@ class Voiture extends VoitureDAO
         $sth = $this->db->prepare($request);
         return $this->getSelfObjectsPreparedStatement($sth);
     }
-    public function deleteRow($id)
+    public function deleteRow()
     {
-        $request = "DELETE FROM cartable WHERE id = $id";
+        $registration = $_POST["registration"];
+        $request = "DELETE FROM cartable WHERE registration = $registration";
         $sth = $this->db->prepare($request);
         return $this->getSelfObjectsPreparedStatement($sth);
     }

@@ -6,6 +6,7 @@ get input status of database to turn green on success -->
 
 <?php
 require_once 'voiture.php';
+$test = new Voiture();
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ require_once 'voiture.php';
 
       <!-- method and action to conn.php -->
 
-      <form name="formCar" method="post" action="testForm.php">
+      <form name="formCar" method="post" action="" id="formulaire">
         <label for="name">Registration</label>
         <input type="text" name="registration" id="registration" class="inputbox">
 
@@ -37,8 +38,7 @@ require_once 'voiture.php';
 
         <label for="name">Model</label>
         <input type="text" name="model" id="model" class="inputbox">
-
-        <button class="inputbox" id="addcarbutton">Add Car</button>
+        <button class="inputbox" id="addcarbutton" type="submit">Add Car</button>
       </form>
 
       <div id="confirmation">Status of input</div>
@@ -52,53 +52,6 @@ require_once 'voiture.php';
         <th>Model</th>
         <th>Delete</th>
       </tr>
-<<<<<<< HEAD
-      <tr>
-        <td id="tablecell"></td>
-=======
-      <!-- <tr>
-        <td></td>
->>>>>>> main
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><img id="bin" src="bin.png"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr> -->
     </table>
   </div>
 

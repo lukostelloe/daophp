@@ -1,6 +1,6 @@
 <?php
 require_once 'voiture.php';
 require_once 'index.php';
-$test->addNew();
-// $all = $test->findALL();
+// $json = $test->decodeJson();
+$test->deleteRow();
 $test->encodeJson();
