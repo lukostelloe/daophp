@@ -60,7 +60,7 @@ function drawRow(element) {
   });
 }
 
-function fetchit() {
+function findAll() {
   fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
       return response.json();
@@ -79,7 +79,7 @@ function fetchit() {
       console.log("Error Reading data " + err);
     });
 }
-fetchit();
+findAll();
 
 function deleteThis(get) {
   fetch(`./controllerVoiture.php?fonction=deleteRow&variable=${get}`)
@@ -120,11 +120,11 @@ formulaire.addEventListener(
     let keepValue = [];
     for (let i = 0; i < Array.from(formulaire.children).length; i++) {
       let z;
-      console.log(Array.from(formulaire.children));
       if (i % 2 == 1) {
-        z = Array.from(formulaire.children)[i].firstChild;
+        z = Array.from(formulaire.children)[i];
         form.append(z.name, z.value);
         keepValue.push(z.value);
+        console.log(z);
       }
     }
     addThis();

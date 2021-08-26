@@ -19,9 +19,9 @@ get input status of database to turn green on success -->
     <div id="input">
 
       <!-- method and action to conn.php -->
-
+      <h2>Register Car</h2>
       <form name="formCar" method="post" action="" id="formulaire">
-        <h2>Register Car</h2>
+
         <label for="name">Registration</label>
         <input type="text" name="registration" id="registration" class="inputbox">
 
