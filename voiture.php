@@ -7,6 +7,7 @@ class Voiture extends VoitureDAO
     {
         $request = "SELECT * FROM cartable";
         $sth = $this->db->prepare($request);
+        // return $sth->execute();
         return $this->getSelfObjectsPreparedStatement($sth);
     }
     public function addNew()
@@ -20,29 +21,28 @@ class Voiture extends VoitureDAO
         $sth = $this->db->prepare($request);
         return $this->getSelfObjectsPreparedStatement($sth);
     }
-    public function deleteRow()
+
+    public function deleteRow($id)
     {
-        if (isset($_GET["registration"])) {
-            $registration = $_GET["registration"];
-            $request = "DELETE FROM cartable WHERE registration = $registration";
-            $sth = $this->db->prepare($request);
-            return $this->getSelfObjectsPreparedStatement($sth);
-        }
+        $request = "DELETE FROM cartable WHERE registration= :id";
+        $sth = $this->db->prepare($request);
+        $sth->bindParam(':id', $id);
+        return $sth->execute();
     }
-    public function encodeJson()
-    {
-        $jsonString = $this->findALL();
-        $data = json_encode($jsonString);
-        $bytes = file_put_contents("cars.json", $data);
-        return $bytes;
-    }
-    public function decodeJson()
-    {
-        $file = "cars.json";
-        $data = file_get_contents($file);
-        $php_DATA = json_decode($data, true);
-        return $php_DATA;
-    }
+    // public function encodeJson()
+    // {
+    //     $jsonString = $this->findALL();
+    //     $data = json_encode($jsonString);
+    //     $bytes = file_put_contents("cars.json", $data);
+    //     return $bytes;
+    // }
+    // public function decodeJson()
+    // {
+    //     $file = "cars.json";
+    //     $data = file_get_contents($file);
+    //     $php_DATA = json_decode($data, true);
+    //     return $php_DATA;
+    // }
     // public function updateRow($id){
     //     $request = "UPDATE cartable SET registration = $_POST[], colour, make, model WHERE id = $id";
     //     $sth = $this->db->prepare($request);

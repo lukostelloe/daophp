@@ -56,12 +56,13 @@ function drawRow(element) {
 }
 
 function fetchit() {
-  fetch("./cars.json")
+  fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       // Work with JSON data here
+      console.log(data);
       if (data.length > 0) {
         data.forEach((element) => {
           createTable(element);
@@ -76,18 +77,13 @@ function fetchit() {
 fetchit();
 
 function deleteThis(get) {
-  fetch(`./deleteVoiture.php?registration=${get}`)
+  fetch(`./controllerVoiture.php?fonction=deleteRow&variable=${get}`)
     .then((response) => {
       console.log(response);
       return response.json();
     })
     .then((data) => {
       // Work with JSON data here
-      // console.log(data);
-      data.forEach((element) => {
-        // ROW
-        console.log(element);
-      });
     })
     .catch((err) => {
       // Do something for an error here
@@ -96,7 +92,7 @@ function deleteThis(get) {
 }
 function addThis() {
   $init = { method: "POST", body: form };
-  fetch("./testForm.php", $init)
+  fetch(`./controllerVoiture.php`, $init)
     .then((response) => {
       console.log(response);
       return response.json();
@@ -104,9 +100,6 @@ function addThis() {
     .then((data) => {
       // Work with JSON data here
       // console.log(data);
-      data.forEach((element) => {
-        // ROW
-      });
     })
     .catch((err) => {
       // Do something for an error here

@@ -3,12 +3,6 @@
 add information from database into table,
 get bin button to work,
 get input status of database to turn green on success -->
-
-<?php
-require_once 'voiture.php';
-$test = new Voiture();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
