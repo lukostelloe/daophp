@@ -74,6 +74,7 @@ function poubelleRow(row) {
     deleteThis(element.registration);
   });
 }
+
 function modfierRow(row) {
   let cell = document.createElement("td");
   row.appendChild(cell);
