@@ -1,5 +1,5 @@
 <?php
-require_once 'voiture.php';
+require_once 'classes/voiture.php';
 $voiture = new Voiture();
 
 $resultat = "";

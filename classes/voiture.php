@@ -10,7 +10,7 @@ class Voiture extends VoitureDAO
         // return $sth->execute();
         return $this->getSelfObjectsPreparedStatement($sth);
     }
-    public function addNewRow()
+    public function addNew()
     {
         $registration = $_POST["registration"];
         $colour = $_POST["colour"];
