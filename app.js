@@ -61,6 +61,9 @@ function drawRow(element) {
     });
   });
   //
+
+  //make the yes function here
+
   let cell2 = document.createElement("td");
   row.appendChild(cell2);
   let img2 = document.createElement("img");
