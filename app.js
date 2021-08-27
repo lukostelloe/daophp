@@ -21,15 +21,15 @@ function drawRow(element) {
   } else {
     for (const key in element) {
       if (Object.hasOwnProperty.call(element, key)) {
-        // if (key != "id") {
-        const elem = element[key];
-        let cell = document.createElement("td");
-        row.appendChild(cell);
-        cell.innerHTML = elem;
-        // let input = document.createElement("input");
-        // cell.appendChild(input);
-        // input.value = elem;
-        // }
+        if (key != "id") {
+          const elem = element[key];
+          let cell = document.createElement("td");
+          row.appendChild(cell);
+          cell.innerHTML = elem;
+          // let input = document.createElement("input");
+          // cell.appendChild(input);
+          // input.value = elem;
+        }
       }
     }
   }
@@ -42,10 +42,23 @@ function drawRow(element) {
   img.style.width = "30px";
   img.addEventListener("click", function (event) {
     event.preventDefault();
-    for (let i = 1; i < Array.from(row.children).length - 2; i++) {
+    for (let i = 0; i < Array.from(row.children).length - 2; i++) {
       const element = Array.from(row.children)[i];
-      console.log(element);
+      let input = document.createElement("input");
+      element.appendChild(input);
+      input.value = element.textContent;
     }
+    let validate = document.createElement("button");
+    validate.textContent = "Validé changements";
+    cell.appendChild(validate);
+    validate.addEventListener("click", function () {
+      let params = [];
+      for (let i = 0; i < Array.from(row.children).length - 2; i++) {
+        const element = Array.from(row.children)[i].lastChild;
+
+        input.value = element.textContent;
+      }
+    });
   });
   //
   let cell2 = document.createElement("td");
@@ -167,7 +180,8 @@ formulaire.addEventListener(
 function modifierParam() {
   //envoyer objet [{"",""}] clé valeur dans un array
 
-  fetch(`./controllerVoiture.php?fonction=modifyRow&variable=${param}`)
+  let params = [];
+  fetch(`./controllerVoiture.php?fonction=modifyRow&variable=${params}`)
     .then((response) => {
       console.log(response);
       return response.json();
@@ -180,3 +194,34 @@ function modifierParam() {
       console.log("Error Reading data " + err);
     });
 }
+
+//******************************************* */ Fonction a implémenté pour code plus propre
+// function poubelleRow(row) {
+//   // marche pas //
+//   let cell = document.createElement("td");
+//   row.appendChild(cell);
+//   let img = document.createElement("img");
+//   cell.appendChild(img);
+//   img.setAttribute("src", "bin.png");
+//   img.style.width = "30px";
+//   img.addEventListener("click", function (event) {
+//     event.preventDefault();
+//     table.removeChild(row);
+//     deleteThis(element.registration);
+//   });
+// }
+// function modfierRow(row) {
+//   let cell = document.createElement("td");
+//   row.appendChild(cell);
+//   let img = document.createElement("img");
+//   cell.appendChild(img);
+//   img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
+//   img.style.width = "30px";
+//   img.addEventListener("click", function (event) {
+//     event.preventDefault();
+//     for (let i = 1; i < Array.from(row.children).length - 2; i++) {
+//       const element = Array.from(row.children)[i];
+//       console.log(element);
+//     }
+//   });
+// }
