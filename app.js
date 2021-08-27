@@ -73,36 +73,7 @@ function drawRow(element) {
     deleteThis(element.registration);
   });
 }
-function poubelleRow(row) {
-  // marche pas //
-  let cell = document.createElement("td");
-  row.appendChild(cell);
-  let img = document.createElement("img");
-  cell.appendChild(img);
-  img.setAttribute("src", "bin.png");
-  img.style.width = "30px";
-  img.addEventListener("click", function (event) {
-    event.preventDefault();
-    table.removeChild(row);
-    deleteThis(element.registration);
-  });
-}
 
-function modfierRow(row) {
-  let cell = document.createElement("td");
-  row.appendChild(cell);
-  let img = document.createElement("img");
-  cell.appendChild(img);
-  img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
-  img.style.width = "30px";
-  img.addEventListener("click", function (event) {
-    event.preventDefault();
-    for (let i = 1; i < Array.from(row.children).length - 2; i++) {
-      const element = Array.from(row.children)[i];
-      console.log(element);
-    }
-  });
-}
 function findAll() {
   fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
