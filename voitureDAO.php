@@ -56,4 +56,10 @@ abstract class VoitureDAO extends EntityBase
         $this->sql = "SELECT * FROM {$this->table}";
         // if ($immatriculation) $this->read($immatriculation);
     }
+
+    public function __get($id) {
+        if (property_exists($this, $id)) {
+          return $this->$id;
+        }
+      }
 }

@@ -84,18 +84,27 @@ function drawRow(element) {
     });
   });
   //
+
+  //make the yes function here
   let cell2 = document.createElement("td");
   row.appendChild(cell2);
   let img2 = document.createElement("img");
   cell2.appendChild(img2);
   img2.setAttribute("src", "bin.png");
   img2.style.width = "30px";
-  img2.addEventListener("click", function (event) {
-    event.preventDefault();
+
+  img2.addEventListener("click", function () {
+    modal.style.display = "block";
+  });
+
+  //When the user clicks on "yes"
+  yes.addEventListener("click", function () {
+    modal.style.display = "none";
     table.removeChild(row);
     deleteThis(element.registration);
   });
 }
+
 function findAll() {
   fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
