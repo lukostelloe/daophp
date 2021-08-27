@@ -60,6 +60,20 @@ class Voiture extends VoitureDAO
             }
         }
     }
+
+    public function checkCarStatus($id){
+        $stmt = $pdo->prepare("SELECT * FROM cartable WHERE id=?");
+        $stmt->execute([$id])
+        $user = $stmt->fetch();
+        if checkCarStatus($id) {
+            header("Location:dao.php/success");
+        } else {
+            header("Location:dao.php/car%registration%already%exists");
+        } 
+    }
+
+
+
     // public function modifyRow($dico)
     // {
     //     foreach ($dico as $key => $value) {
