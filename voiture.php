@@ -28,7 +28,66 @@ class Voiture extends VoitureDAO
         $sth->bindParam(':id', $id);
         return $sth->execute();
     }
-    // public function modifyRow($registration ,$colour,$make,$model){
-
+    public function modifyRow($dico)
+    {
+        foreach ($dico as $key => $value) {
+            switch ($key) {
+                case 'registration':
+                    $request = "UPDATE cartable SET colour = :value WHERE id = :id";
+                    $sth = $this->db->prepare($request);
+                    $sth->bindParam(':id', $id);
+                    $sth->bindParam(':value', $value);
+                    return $sth->execute();
+                    break;
+                case 'colour':
+                    $z = $this->setColour($value);
+                    $z = $this->getColour();
+                    return $z;
+                    break;
+                case 'make':
+                    $z = $this->setMake($value);
+                    $z = $this->getMake();
+                    return $z;
+                    break;
+                case 'model':
+                    $z = $this->setModel($value);
+                    $z = $this->getModel();
+                    return $z;
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+    }
+    // public function modifyRow($dico)
+    // {
+    //     foreach ($dico as $key => $value) {
+    //         switch ($key) {
+    //             case 'registration':
+    //                 $z = $this->setRegistration($value);
+    //                 $z = $this->getRegistration();
+    //                 return $z;
+    //                 break;
+    //             case 'colour':
+    //                 $z = $this->setColour($value);
+    //                 $z = $this->getColour();
+    //                 return $z;
+    //                 break;
+    //             case 'make':
+    //                 $z = $this->setMake($value);
+    //                 $z = $this->getMake();
+    //                 return $z;
+    //                 break;
+    //             case 'model':
+    //                 $z = $this->setModel($value);
+    //                 $z = $this->getModel();
+    //                 return $z;
+    //                 break;
+    //             default:
+    //                 # code...
+    //                 break;
+    //         }
+    //     }
     // }
 }

@@ -41,10 +41,12 @@ get input status of database to turn green on success -->
 
     <table id="cartable">
       <tr>
+        <th>ID</th>
         <th>Regist</th>
         <th>Colour</th>
         <th>Make</th>
         <th>Model</th>
+        <th>Changes</th>
         <th>Delete</th>
       </tr>
     </table>

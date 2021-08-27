@@ -18,9 +18,9 @@ abstract class VoitureDAO extends EntityBase
         return $this->colour;
     }
 
-    public function setCouleur($colour)
+    public function setColour($colour)
     {
-        $this->couleur = $colour;
+        $this->colour = $colour;
     }
     ////
     public function getMake()
@@ -28,7 +28,7 @@ abstract class VoitureDAO extends EntityBase
         return $this->make;
     }
 
-    public function setMarque($make)
+    public function setMake($make)
     {
         $this->make = $make;
     }
@@ -38,7 +38,7 @@ abstract class VoitureDAO extends EntityBase
         return $this->model;
     }
 
-    public function setModele($model)
+    public function setModel($model)
     {
         $this->model = $model;
     }

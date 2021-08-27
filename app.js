@@ -1,65 +1,94 @@
-///****************************************************************VARIABLES GLOBALES********************************************************** */
-const table = document.getElementById("cartable");
-const formulaire = document.querySelector("#formulaire");
+///*************************************************************VARIABLES GLOBALES********************************************************** */
+const table = document.getElementById("cartable"); //Tableau
+const formulaire = document.querySelector("#formulaire"); //Formulaire
 let form;
-///*********************************************************************FONCTIONS********************************************************** */
-function createTable(element) {
+///******************************************************************FONCTIONS************************************************************** */
+//DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
+function drawRow(element) {
+  let typeOf = Array.isArray(element) ? true : false;
   let row = document.createElement("tr");
   table.appendChild(row);
-  for (const key in element) {
-    //CELLS
-    if (Object.hasOwnProperty.call(element, key)) {
-      if (key != "id") {
+  if (typeOf) {
+    for (let i = 0; i < element.length; i++) {
+      const z = element[i];
+      let cell = document.createElement("td");
+      row.appendChild(cell);
+      cell.innerHTML = z;
+      // let input = document.createElement("input");
+      // cell.appendChild(input);
+      // input.value = z;
+    }
+  } else {
+    for (const key in element) {
+      if (Object.hasOwnProperty.call(element, key)) {
+        // if (key != "id") {
         const elem = element[key];
         let cell = document.createElement("td");
         row.appendChild(cell);
-
-        let input = document.createElement("input");
-        cell.appendChild(input);
-        input.value = elem;
-
-        // cell.innerHTML = elem;
+        cell.innerHTML = elem;
+        // let input = document.createElement("input");
+        // cell.appendChild(input);
+        // input.value = elem;
+        // }
       }
     }
   }
+  //test a faire
+  let cell = document.createElement("td");
+  row.appendChild(cell);
+  let img = document.createElement("img");
+  cell.appendChild(img);
+  img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
+  img.style.width = "30px";
+  img.addEventListener("click", function (event) {
+    event.preventDefault();
+    for (let i = 1; i < Array.from(row.children).length - 2; i++) {
+      const element = Array.from(row.children)[i];
+      console.log(element);
+    }
+  });
+  //
+  let cell2 = document.createElement("td");
+  row.appendChild(cell2);
+  let img2 = document.createElement("img");
+  cell2.appendChild(img2);
+  img2.setAttribute("src", "bin.png");
+  img2.style.width = "30px";
+  img2.addEventListener("click", function (event) {
+    event.preventDefault();
+    table.removeChild(row);
+    deleteThis(element.registration);
+  });
+}
+function poubelleRow(row) {
+  // marche pas //
   let cell = document.createElement("td");
   row.appendChild(cell);
   let img = document.createElement("img");
   cell.appendChild(img);
   img.setAttribute("src", "bin.png");
   img.style.width = "30px";
-  ////
   img.addEventListener("click", function (event) {
     event.preventDefault();
     table.removeChild(row);
-    // delete element;
     deleteThis(element.registration);
   });
 }
-function drawRow(element) {
-  let row = document.createElement("tr");
-  table.appendChild(row);
-  for (let i = 0; i < element.length; i++) {
-    const z = element[i];
-    let cell = document.createElement("td");
-    row.appendChild(cell);
-    cell.innerHTML = z;
-  }
+function modfierRow(row) {
   let cell = document.createElement("td");
   row.appendChild(cell);
   let img = document.createElement("img");
   cell.appendChild(img);
-  img.setAttribute("src", "bin.png");
+  img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
   img.style.width = "30px";
-  ////
   img.addEventListener("click", function (event) {
     event.preventDefault();
-    table.removeChild(row);
-    // delete element;
-    deleteThis(element.registration);
+    for (let i = 1; i < Array.from(row.children).length - 2; i++) {
+      const element = Array.from(row.children)[i];
+      console.log(element);
+    }
   });
 }
-
 function findAll() {
   fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
@@ -70,7 +99,7 @@ function findAll() {
       console.log(data);
       if (data.length > 0) {
         data.forEach((element) => {
-          createTable(element);
+          drawRow(element);
         });
       }
     })
@@ -133,3 +162,20 @@ formulaire.addEventListener(
   },
   false
 );
+
+function modifierParam() {
+  //envoyer objet [{"",""}] clé valeur dans un array
+
+  fetch(`./controllerVoiture.php?fonction=modifyRow&variable=${param}`)
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      // Work with JSON data here
+    })
+    .catch((err) => {
+      // Do something for an error here
+      console.log("Error Reading data " + err);
+    });
+}
