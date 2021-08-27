@@ -8,9 +8,9 @@ get input status of database to turn green on success -->
 
 <head>
   <title>Car Table</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="modal.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/modal.js" defer></script>
+  <script src="js/app.js" defer></script>
 </head>
 
 <body>

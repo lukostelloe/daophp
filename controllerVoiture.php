@@ -20,8 +20,11 @@ if (isset($_GET['fonction'])) {
             break;
         case 'addNew':
             if (isset($_POST["registration"])) {
-                $voiture->addNew();
+                $resultat = $voiture->addNew();
             }
+            break;
+        case 'getID':
+            $resultat = $voiture->getlastID();
             break;
         default:
             break;

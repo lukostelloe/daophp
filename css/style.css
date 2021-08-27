@@ -1,8 +1,10 @@
 body {
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-size: medium;
-  background-image: url("car.jpg");
+  background-image: url("../asset/car.jpg");
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;

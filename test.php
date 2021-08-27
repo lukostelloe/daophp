@@ -1,5 +1,5 @@
 <?php
-require 'voiture.php';
+require 'classes/voiture.php';
 $r = new Voiture();
 $r->setId("62");
 $r->setRegistration("test");

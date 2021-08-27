@@ -45,6 +45,12 @@ class Voiture extends VoitureDAO
         $sth->bindParam(':model', $model);
         return $sth->execute();
     }
+    public function getlastID()
+    {
+        $request = "SELECT MAX(id) FROM cartable;";
+        $sth = $this->db->prepare($request);
+        return $this->getSelfObjectsPreparedStatement($sth);
+    }
     // foreach ($dico as $key => $value) {
     //     switch ($key) {
     //         case 'id':

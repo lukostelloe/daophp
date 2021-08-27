@@ -5,31 +5,32 @@ let form;
 ///******************************************************************FONCTIONS************************************************************** */
 //DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
 function drawRow(element) {
-  let typeOf = Array.isArray(element) ? true : false;
   let row = document.createElement("tr");
   table.appendChild(row);
+  let typeOf = Array.isArray(element) ? true : false;
   if (typeOf) {
+    let lastId = getLastId();
+    console.log(lastId);
+    let remplacant;
     for (let i = 0; i < element.length; i++) {
-      const z = element[i];
-      let cell = document.createElement("td");
-      row.appendChild(cell);
-      cell.innerHTML = z;
-      // let input = document.createElement("input");
-      // cell.appendChild(input);
-      // input.value = z;
+      remplacant = {
+        registration: element[0],
+        colour: element[1],
+        make: element[2],
+        model: element[3],
+        id: lastId + 1,
+      };
     }
-  } else {
-    for (const key in element) {
-      if (Object.hasOwnProperty.call(element, key)) {
-        if (key != "id") {
-          const elem = element[key];
-          let cell = document.createElement("td");
-          row.appendChild(cell);
-          cell.innerHTML = elem;
-          // let input = document.createElement("input");
-          // cell.appendChild(input);
-          // input.value = elem;
-        }
+    element = remplacant;
+    console.log(element);
+  }
+  for (const key in element) {
+    if (Object.hasOwnProperty.call(element, key)) {
+      if (key != "id") {
+        const elem = element[key];
+        let cell = document.createElement("td");
+        row.appendChild(cell);
+        cell.innerHTML = elem;
       }
     }
   }
@@ -38,7 +39,7 @@ function drawRow(element) {
   row.appendChild(cell);
   let img = document.createElement("img");
   cell.appendChild(img);
-  img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
+  img.setAttribute("src", "asset/bin.png"); //ICONE POUR MODIFIER
   img.style.width = "30px";
   img.addEventListener("click", function (event) {
     event.preventDefault();
@@ -58,6 +59,7 @@ function drawRow(element) {
         params.push(y.value);
       }
       console.log(params);
+      console.log(element);
       for (const key in element) {
         if (Object.hasOwnProperty.call(element, key)) {
           element[key];
@@ -90,13 +92,13 @@ function drawRow(element) {
   row.appendChild(cell2);
   let img2 = document.createElement("img");
   cell2.appendChild(img2);
-  img2.setAttribute("src", "bin.png");
+  img2.setAttribute("src", "asset/bin.png");
   img2.style.width = "30px";
 
   img2.addEventListener("click", function () {
     modal.style.display = "block";
   });
-
+  console.log(element.registration);
   //When the user clicks on "yes"
   yes.addEventListener("click", function () {
     modal.style.display = "none";
@@ -104,7 +106,22 @@ function drawRow(element) {
     deleteThis(element.registration);
   });
 }
-
+function getLastId() {
+  fetch(`./controllerVoiture.php?fonction=getID`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      // Work with JSON data here
+      let test = data[0]["MAX(id)"];
+      console.log(data[0]["MAX(id)"]);
+      return test;
+    })
+    .catch((err) => {
+      // Do something for an error here
+      console.log("Error Reading data " + err);
+    });
+}
 function findAll() {
   fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
