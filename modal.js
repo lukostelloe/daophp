@@ -18,15 +18,6 @@ span.onclick = function () {
 cancel.onclick = function () {
   modal.style.display = "none";
 };
-
-//When the user clicks on "yes"
-yes.addEventListener("click", function (event) {
-  modal.style.display = "none";
-  event.preventDefault();
-  table.removeChild(row);
-  deleteThis(element.registration);
-});
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
