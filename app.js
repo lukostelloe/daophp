@@ -21,15 +21,15 @@ function drawRow(element) {
   } else {
     for (const key in element) {
       if (Object.hasOwnProperty.call(element, key)) {
-        // if (key != "id") {
-        const elem = element[key];
-        let cell = document.createElement("td");
-        row.appendChild(cell);
-        cell.innerHTML = elem;
-        // let input = document.createElement("input");
-        // cell.appendChild(input);
-        // input.value = elem;
-        // }
+        if (key != "id") {
+          const elem = element[key];
+          let cell = document.createElement("td");
+          row.appendChild(cell);
+          cell.innerHTML = elem;
+          // let input = document.createElement("input");
+          // cell.appendChild(input);
+          // input.value = elem;
+        }
       }
     }
   }
@@ -42,9 +42,11 @@ function drawRow(element) {
   img.style.width = "30px";
   img.addEventListener("click", function (event) {
     event.preventDefault();
-    for (let i = 1; i < Array.from(row.children).length - 2; i++) {
+    for (let i = 0; i < Array.from(row.children).length - 2; i++) {
       const element = Array.from(row.children)[i];
-      console.log(element);
+      let input = document.createElement("input");
+      element.appendChild(input);
+      input.value = element.textContent;
     }
   });
   //
