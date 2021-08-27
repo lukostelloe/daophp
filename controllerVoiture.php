@@ -14,22 +14,17 @@ if (isset($_GET['fonction'])) {
             $r = $_GET['variable'];
             $resultat = $voiture->deleteRow($r);
             break;
-            // case 'addNew':
-            //     $r = $_GET['variable'];
-            //     $voiture->addNew();
-            //     break;
-
+        case 'modifyRow':
+            $r = $_GET['variable'];
+            $resultat = $voiture->modifyRow($r);
+            break;
+        case 'addNew':
+            if (isset($_POST["registration"])) {
+                $voiture->addNew();
+            }
+            break;
         default:
             break;
     }
 }
-
-if (isset($_POST["registration"])) {
-    $voiture->addNew();
-    // echo "OK";
-}
-// else {
-//     echo "KO";
-// }
-
 echo json_encode($resultat);

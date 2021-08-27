@@ -30,36 +30,59 @@ class Voiture extends VoitureDAO
     }
     public function modifyRow($dico)
     {
-        foreach ($dico as $key => $value) {
-            switch ($key) {
-                case 'registration':
-                    $request = "UPDATE cartable SET colour = :value WHERE id = :id";
-                    $sth = $this->db->prepare($request);
-                    $sth->bindParam(':id', $id);
-                    $sth->bindParam(':value', $value);
-                    return $sth->execute();
-                    break;
-                case 'colour':
-                    $z = $this->setColour($value);
-                    $z = $this->getColour();
-                    return $z;
-                    break;
-                case 'make':
-                    $z = $this->setMake($value);
-                    $z = $this->getMake();
-                    return $z;
-                    break;
-                case 'model':
-                    $z = $this->setModel($value);
-                    $z = $this->getModel();
-                    return $z;
-                    break;
-                default:
-                    # code...
-                    break;
-            }
-        }
+        $dico = json_decode($dico);
+        $request = "UPDATE cartable SET registration = :registration, colour = :colour, make = :make, model = :model WHERE id = :id";
+        $sth = $this->db->prepare($request);
+        $id = $dico->id;
+        $registration = $dico->registration;
+        $colour = $dico->colour;
+        $make = $dico->make;
+        $model = $dico->model;
+        $sth->bindParam(':id', $id);
+        $sth->bindParam(':registration',  $registration);
+        $sth->bindParam(':colour', $colour);
+        $sth->bindParam(':make',  $make);
+        $sth->bindParam(':model', $model);
+        return $sth->execute();
+        // foreach ($dico as $key => $value) {
+        //     switch ($key) {
+        //         case 'id':
+        //             $id = $value;
+        //             break;
+        //         case 'registration':
+        //             $request = "UPDATE cartable SET registration = :value WHERE id = :id";
+        //             $sth = $this->db->prepare($request);
+        //             $sth->bindParam(':id', $id);
+        //             $sth->bindParam(':value', $value);
+        //             return $sth->execute();
+        //             break;
+        //         case 'colour':
+        //             $request = "UPDATE cartable SET colour = :value WHERE id = :id";
+        //             $sth = $this->db->prepare($request);
+        //             $sth->bindParam(':id', $id);
+        //             $sth->bindParam(':value', $value);
+        //             return $sth->execute();
+        //             break;
+        //         case 'make':
+        //             $request = "UPDATE cartable SET make = :value WHERE id = :id";
+        //             $sth = $this->db->prepare($request);
+        //             $sth->bindParam(':id', $id);
+        //             $sth->bindParam(':value', $value);
+        //             return $sth->execute();
+        //             break;
+        //         case 'model':
+        //             $request = "UPDATE cartable SET model = :value WHERE id = :id";
+        //             $sth = $this->db->prepare($request);
+        //             $sth->bindParam(':id', $id);
+        //             $sth->bindParam(':value', $value);
+        //             return $sth->execute();
+        //             break;
+        //         default:
+        //             # code...
+        //             break;
+        //     }
     }
+}
     // public function modifyRow($dico)
     // {
     //     foreach ($dico as $key => $value) {
@@ -90,4 +113,4 @@ class Voiture extends VoitureDAO
     //         }
     //     }
     // }
-}
+// }

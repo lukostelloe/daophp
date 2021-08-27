@@ -54,10 +54,33 @@ function drawRow(element) {
     validate.addEventListener("click", function () {
       let params = [];
       for (let i = 0; i < Array.from(row.children).length - 2; i++) {
-        const element = Array.from(row.children)[i].lastChild;
-
-        input.value = element.textContent;
+        const y = Array.from(row.children)[i].lastChild;
+        params.push(y.value);
       }
+      console.log(params);
+      for (const key in element) {
+        if (Object.hasOwnProperty.call(element, key)) {
+          element[key];
+          switch (key) {
+            case "registration":
+              element[key] = params[0];
+              break;
+            case "colour":
+              element[key] = params[1];
+              break;
+            case "make":
+              element[key] = params[2];
+              break;
+            case "model":
+              element[key] = params[3];
+              break;
+            default:
+              break;
+          }
+        }
+      }
+      console.log(element);
+      modifierParam(element);
     });
   });
   //
@@ -80,7 +103,6 @@ function findAll() {
     })
     .then((data) => {
       // Work with JSON data here
-      console.log(data);
       if (data.length > 0) {
         data.forEach((element) => {
           drawRow(element);
@@ -110,7 +132,7 @@ function deleteThis(get) {
 }
 function addThis() {
   $init = { method: "POST", body: form };
-  fetch(`./controllerVoiture.php`, $init)
+  fetch(`./controllerVoiture.php?fonction=addNew`, $init)
     .then((response) => {
       console.log(response);
       return response.json();
@@ -147,10 +169,9 @@ formulaire.addEventListener(
   false
 );
 
-function modifierParam() {
+function modifierParam(params) {
   //envoyer objet [{"",""}] clé valeur dans un array
-
-  let params = [];
+  params = JSON.stringify(params);
   fetch(`./controllerVoiture.php?fonction=modifyRow&variable=${params}`)
     .then((response) => {
       console.log(response);

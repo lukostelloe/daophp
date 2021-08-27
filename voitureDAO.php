@@ -3,6 +3,10 @@ require_once 'DAO.php';
 
 abstract class VoitureDAO extends EntityBase
 {
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     public function getRegistration()
     {
         return $this->registration;
