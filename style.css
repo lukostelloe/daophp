@@ -1,6 +1,12 @@
 body {
+  display: flex;
+  flex-direction: column;
   font-size: medium;
   background-image: url("car.jpg");
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
 }
 
 #title {
@@ -13,7 +19,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 #input {
@@ -22,8 +28,6 @@ body {
   text-align: center;
   font-size: large;
   background-color: #8db8a4;
-  margin: 50px;
-  border: 20px;
 }
 
 #addcarbutton {

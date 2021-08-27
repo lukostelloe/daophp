@@ -13,11 +13,10 @@ get input status of database to turn green on success -->
 </head>
 
 <body>
-  <h1 id="title">~ Car Record Input ~</h1>
-
-  <div id="interface">
+<h1 id="title">~ Car Record Input ~</h1>
+<div id="interface">
+  
     <div id="input">
-
       <!-- method and action to conn.php -->
       <h2>Register Car</h2>
       <form name="formCar" method="post" action="" id="formulaire">
