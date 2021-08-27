@@ -9,8 +9,8 @@ get input status of database to turn green on success -->
 <head>
   <title>Car Table</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
   <script src="modal.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 
 <body>
@@ -52,8 +52,6 @@ get input status of database to turn green on success -->
     </table>
   </div>
 
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

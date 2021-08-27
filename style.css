@@ -12,7 +12,7 @@ body {
 #title {
   display: flex;
   justify-content: center;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 #interface {

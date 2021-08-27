@@ -62,7 +62,7 @@ function drawRow(element) {
   });
   //
 
-  //make the yes function here
+  //Click on the bin
 
   let cell2 = document.createElement("td");
   row.appendChild(cell2);
@@ -70,10 +70,11 @@ function drawRow(element) {
   cell2.appendChild(img2);
   img2.setAttribute("src", "bin.png");
   img2.style.width = "30px";
-  img2.addEventListener("click", function (event) {
-    event.preventDefault();
-    table.removeChild(row);
-    deleteThis(element.registration);
+  img2.addEventListener("click", function () {
+    // event.preventDefault();
+    // table.removeChild(row);
+    // deleteThis(element.registration);
+    modal.style.display = "block";
   });
 }
 
