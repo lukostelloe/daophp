@@ -1,6 +1,12 @@
 body {
+  display: flex;
+  flex-direction: column;
   font-size: medium;
   background-image: url("car.jpg");
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
 }
 
 #title {
@@ -12,7 +18,8 @@ body {
 #interface {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #input {
@@ -21,8 +28,6 @@ body {
   text-align: center;
   font-size: large;
   background-color: #8db8a4;
-  margin: 50px;
-  border: 20px;
 }
 
 #addcarbutton {
@@ -67,4 +72,3 @@ th {
 tr:nth-child(even) {
   background-color: #a2b8ad;
 }
-
