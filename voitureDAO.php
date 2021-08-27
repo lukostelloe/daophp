@@ -1,7 +1,12 @@
 <?php
 require_once 'DAO.php';
+
 abstract class VoitureDAO extends EntityBase
 {
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     public function getRegistration()
     {
         return $this->registration;
@@ -9,7 +14,7 @@ abstract class VoitureDAO extends EntityBase
 
     public function setRegistration($registration)
     {
-        $this->id = $registration;
+        $this->registration = $registration;
     }
     ////
     public function getColour()
@@ -17,9 +22,9 @@ abstract class VoitureDAO extends EntityBase
         return $this->colour;
     }
 
-    public function setCouleur($colour)
+    public function setColour($colour)
     {
-        $this->couleur = $colour;
+        $this->colour = $colour;
     }
     ////
     public function getMake()
@@ -27,7 +32,7 @@ abstract class VoitureDAO extends EntityBase
         return $this->make;
     }
 
-    public function setMarque($make)
+    public function setMake($make)
     {
         $this->make = $make;
     }
@@ -37,7 +42,7 @@ abstract class VoitureDAO extends EntityBase
         return $this->model;
     }
 
-    public function setModele($model)
+    public function setModel($model)
     {
         $this->model = $model;
     }
@@ -51,4 +56,10 @@ abstract class VoitureDAO extends EntityBase
         $this->sql = "SELECT * FROM {$this->table}";
         // if ($immatriculation) $this->read($immatriculation);
     }
+
+    public function __get($id) {
+        if (property_exists($this, $id)) {
+          return $this->$id;
+        }
+      }
 }
