@@ -66,9 +66,9 @@ class Voiture extends VoitureDAO
         $stmt->execute([$id])
         $user = $stmt->fetch();
         if checkCarStatus($id) {
-            header("Location:dao.php/success");
+            echo "car already exists"
         } else {
-            header("Location:dao.php/car%registration%already%exists");
+            echo "car doesnt exist";
         } 
     }
 
