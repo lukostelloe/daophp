@@ -66,7 +66,6 @@ get input status of database to turn green on success -->
 
 </div>
 
-</div>
 
 </body>
 
