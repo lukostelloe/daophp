@@ -2,6 +2,7 @@
 const table = document.getElementById("cartable"); //Tableau
 const formulaire = document.querySelector("#formulaire"); //Formulaire
 let form;
+let lastId = getLastId();
 ///******************************************************************FONCTIONS************************************************************** */
 //DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
 function drawRow(element) {
@@ -9,7 +10,7 @@ function drawRow(element) {
   table.appendChild(row);
   let typeOf = Array.isArray(element) ? true : false;
   if (typeOf) {
-    let lastId = getLastId();
+    getLastId();
     console.log(lastId);
     let remplacant;
     for (let i = 0; i < element.length; i++) {
@@ -18,7 +19,7 @@ function drawRow(element) {
         colour: element[1],
         make: element[2],
         model: element[3],
-        id: lastId + 1,
+        id: parseInt(lastId) + 1,
       };
     }
     element = remplacant;
@@ -83,6 +84,11 @@ function drawRow(element) {
       }
       console.log(element);
       modifierParam(element);
+      console.log();
+      Array.from(row.children)[0].innerHTML = element["registration"];
+      Array.from(row.children)[1].innerHTML = element["colour"];
+      Array.from(row.children)[2].innerHTML = element["make"];
+      Array.from(row.children)[3].innerHTML = element["model"];
     });
   });
   //
@@ -97,13 +103,12 @@ function drawRow(element) {
 
   img2.addEventListener("click", function () {
     modal.style.display = "block";
+    table.removeChild(row);
+    deleteThis(element.registration);
   });
-  console.log(element.registration);
   //When the user clicks on "yes"
   yes.addEventListener("click", function () {
     modal.style.display = "none";
-    table.removeChild(row);
-    deleteThis(element.registration);
   });
 }
 function getLastId() {
@@ -113,9 +118,9 @@ function getLastId() {
     })
     .then((data) => {
       // Work with JSON data here
-      let test = data[0]["MAX(id)"];
-      console.log(data[0]["MAX(id)"]);
-      return test;
+      lastId = data[0]["MAX(id)"];
+      console.log(lastId);
+      // console.log(data[0]["MAX(id)"]);
     })
     .catch((err) => {
       // Do something for an error here
@@ -205,6 +210,7 @@ function modifierParam(params) {
     })
     .then((data) => {
       // Work with JSON data here
+      console.log(data);
     })
     .catch((err) => {
       // Do something for an error here
