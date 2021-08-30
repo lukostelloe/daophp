@@ -113,15 +113,12 @@ function drawRow(element) {
   img2.style.width = "30px";
 
   img2.addEventListener("click", function () {
-    // modal.style.display = "block";
-    table.removeChild(row);
-    deleteThis(element.registration);
-  });
-
-  //When the user clicks on "yes"
-
-  yes.addEventListener("click", function () {
-    modal.style.display = "none";
+    modal.style.display = "block";
+    yes.addEventListener("click", function () {
+      modal.style.display = "none";
+      table.removeChild(row);
+      deleteThis(element.registration);
+    });
   });
 }
 
@@ -199,16 +196,16 @@ function addThis() {
 formulaire.addEventListener(
   "submit",
   function (event) {
+    event.preventDefault();
     if (
       reg.value.length == 0 ||
       colour.value.length == 0 ||
       make.value.length == 0 ||
       model.value.length == 0
     ) {
-      alert("please fill in all fields");
-      clearTimeout(animate);
+      status.innerHTML = "please fill in all fields";
+      status.style.color = "red";
     } else {
-      event.preventDefault();
       form = new FormData();
       let keepValue = [];
       for (let i = 0; i < Array.from(formulaire.children).length; i++) {
