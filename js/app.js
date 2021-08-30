@@ -182,20 +182,23 @@ formulaire.addEventListener(
   "submit",
   function (event) {
     event.preventDefault();
-    form = new FormData();
-    let keepValue = [];
-    for (let i = 0; i < Array.from(formulaire.children).length; i++) {
-      let z;
-      if (i % 2 == 1) {
-        z = Array.from(formulaire.children)[i];
-        form.append(z.name, z.value);
-        keepValue.push(z.value);
-        console.log(z);
+    if (verifExist(formulaire.children[1].value) < 1) {
+      form = new FormData();
+      let keepValue = [];
+      for (let i = 0; i < Array.from(formulaire.children).length; i++) {
+        let z;
+        if (i % 2 == 1) {
+          z = Array.from(formulaire.children)[i];
+          form.append(z.name, z.value);
+          keepValue.push(z.value);
+          console.log(z);
+        }
       }
+      addThis();
+      console.log(keepValue);
+      drawRow(keepValue);
+    } else {
     }
-    addThis();
-    console.log(keepValue);
-    drawRow(keepValue);
   },
   false
 );
@@ -217,34 +220,19 @@ function modifierParam(params) {
       console.log("Error Reading data " + err);
     });
 }
-
-//******************************************* */ Fonction a implémenté pour code plus propre
-// function poubelleRow(row) {
-//   // marche pas //
-//   let cell = document.createElement("td");
-//   row.appendChild(cell);
-//   let img = document.createElement("img");
-//   cell.appendChild(img);
-//   img.setAttribute("src", "bin.png");
-//   img.style.width = "30px";
-//   img.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     table.removeChild(row);
-//     deleteThis(element.registration);
-//   });
-// }
-// function modfierRow(row) {
-//   let cell = document.createElement("td");
-//   row.appendChild(cell);
-//   let img = document.createElement("img");
-//   cell.appendChild(img);
-//   img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
-//   img.style.width = "30px";
-//   img.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     for (let i = 1; i < Array.from(row.children).length - 2; i++) {
-//       const element = Array.from(row.children)[i];
-//       console.log(element);
-//     }
-//   });
-// }
+function verifExist(params) {
+  // params = JSON.stringify(params);
+  fetch(`./controllerVoiture.php?fonction=verifExist&registration=${params}`)
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      // Work with JSON data here
+      console.log(data);
+    })
+    .catch((err) => {
+      // Do something for an error here
+      console.log("Error Reading data " + err);
+    });
+}

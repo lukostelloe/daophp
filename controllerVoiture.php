@@ -29,6 +29,12 @@ if (isset($_GET['fonction'])) {
         case 'verifExist':
             $r = $_GET['registration'];
             $resultat = $voiture->verifExist($r);
+            $resultat = count($resultat);
+            // if (count($resultat) > 0) {
+            //     $resultat = false;
+            // } else {
+            //     $resultat = true;
+            // }
             break;
         default:
             break;
