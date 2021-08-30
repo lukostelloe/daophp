@@ -53,7 +53,7 @@ function drawRow(element) {
   row.appendChild(cell);
   let img = document.createElement("img");
   cell.appendChild(img);
-  img.setAttribute("src", "asset/bin.png"); //ICONE POUR MODIFIER
+  img.setAttribute("src", "asset/changement.png");
   img.style.width = "30px";
   img.addEventListener("click", function (event) {
     event.preventDefault();
@@ -112,7 +112,8 @@ function drawRow(element) {
   row.appendChild(cell2);
   let img2 = document.createElement("img");
   cell2.appendChild(img2);
-  img2.setAttribute("src", "asset/bin.png");
+  img2.setAttribute("src", "asset/bin.png"); //ICONE POUR MODIFIER
+
   img2.style.width = "30px";
 
   img2.addEventListener("click", function () {
