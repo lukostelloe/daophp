@@ -7,7 +7,7 @@ var carbutton = document.getElementById("addcarbutton");
 var statu = document.getElementById("confirmation");
 
 carbutton.addEventListener("click", function () {
-  statu.innerHTML = "car added!";
+  status.innerHTML = "car added!";
 });
 
 // When the user clicks on (x) or cancel, close the modal

@@ -1,6 +1,14 @@
 ///*************************************************************VARIABLES GLOBALES********************************************************** */
 const table = document.getElementById("cartable"); //Tableau
 const formulaire = document.querySelector("#formulaire"); //Formulaire
+
+//calling fields in the input section
+const reg = document.getElementById("registration");
+const colour = document.getElementById("colour");
+const make = document.getElementById("make");
+const model = document.getElementById("model");
+const status = document.getElementById("confirmation");
+
 let form;
 let lastId = getLastId();
 ///******************************************************************FONCTIONS************************************************************** */
@@ -35,7 +43,9 @@ function drawRow(element) {
       }
     }
   }
+
   //test a faire
+
   let cell = document.createElement("td");
   row.appendChild(cell);
   let img = document.createElement("img");
@@ -94,6 +104,7 @@ function drawRow(element) {
   //
 
   //make the yes function here
+
   let cell2 = document.createElement("td");
   row.appendChild(cell2);
   let img2 = document.createElement("img");
@@ -102,15 +113,18 @@ function drawRow(element) {
   img2.style.width = "30px";
 
   img2.addEventListener("click", function () {
-    modal.style.display = "block";
+    // modal.style.display = "block";
     table.removeChild(row);
     deleteThis(element.registration);
   });
+
   //When the user clicks on "yes"
+
   yes.addEventListener("click", function () {
     modal.style.display = "none";
   });
 }
+
 function getLastId() {
   fetch(`./controllerVoiture.php?fonction=getID`)
     .then((response) => {
@@ -127,6 +141,7 @@ function getLastId() {
       console.log("Error Reading data " + err);
     });
 }
+
 function findAll() {
   fetch(`./controllerVoiture.php?fonction=findALL`)
     .then((response) => {
@@ -161,6 +176,7 @@ function deleteThis(get) {
       console.log("Error Reading data " + err);
     });
 }
+
 function addThis() {
   $init = { method: "POST", body: form };
   fetch(`./controllerVoiture.php?fonction=addNew`, $init)
@@ -177,25 +193,39 @@ function addThis() {
       console.log("Error Reading data " + err);
     });
 }
+
 ///////////////////////
+
 formulaire.addEventListener(
   "submit",
   function (event) {
-    event.preventDefault();
-    form = new FormData();
-    let keepValue = [];
-    for (let i = 0; i < Array.from(formulaire.children).length; i++) {
-      let z;
-      if (i % 2 == 1) {
-        z = Array.from(formulaire.children)[i];
-        form.append(z.name, z.value);
-        keepValue.push(z.value);
-        console.log(z);
+    if (
+      reg.value.length == 0 ||
+      colour.value.length == 0 ||
+      make.value.length == 0 ||
+      model.value.length == 0
+    ) {
+      alert("please fill in all fields");
+      clearTimeout(animate);
+    } else {
+      event.preventDefault();
+      form = new FormData();
+      let keepValue = [];
+      for (let i = 0; i < Array.from(formulaire.children).length; i++) {
+        let z;
+        if (i % 2 == 1) {
+          z = Array.from(formulaire.children)[i];
+          form.append(z.name, z.value);
+          keepValue.push(z.value);
+          console.log(z);
+        }
       }
+      addThis();
+      console.log(keepValue);
+      drawRow(keepValue);
+      status.innerHTML = "submission added!";
+      status.style.color = "green";
     }
-    addThis();
-    console.log(keepValue);
-    drawRow(keepValue);
   },
   false
 );

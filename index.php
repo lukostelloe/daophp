@@ -37,7 +37,7 @@ get input status of database to turn green on success -->
           <button class="inputbox" id="addcarbutton" type="submit">Add Car</button>
         </form>
 
-        <div id="confirmation">Status of input</div>
+        <div id="confirmation"></div>
     </div>
 
     <table id="cartable">
