@@ -26,6 +26,10 @@ if (isset($_GET['fonction'])) {
         case 'getID':
             $resultat = $voiture->getlastID();
             break;
+        case 'verifExist':
+            $r = $_GET['registration'];
+            $resultat = $voiture->verifExist($r);
+            break;
         default:
             break;
     }
