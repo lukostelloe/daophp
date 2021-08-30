@@ -7,10 +7,13 @@ const reg = document.getElementById("registration");
 const colour = document.getElementById("colour");
 const make = document.getElementById("make");
 const model = document.getElementById("model");
-const statu = document.getElementById("confirmation");
+const infoForm = document.getElementById("confirmation");
 
-let form;
-let lastId = getLastId();
+let form; // Formdata
+let lastId = getLastId(); //get last ID in BDD
+
+let luke = false; // If registration already exist
+// verifExist(formulaire.children[1].value);
 ///******************************************************************FONCTIONS************************************************************** */
 //DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
 function drawRow(element) {
@@ -200,28 +203,33 @@ formulaire.addEventListener("submit", function (event) {
     make.value.length == 0 ||
     model.value.length == 0
   ) {
-    statu.innerHTML = "please fill in all fields";
-    statu.style.color = "red";
-  } else if (verifExist(formulaire.children[1].value) < 1) {
-    form = new FormData();
-    let keepValue = [];
-    for (let i = 0; i < Array.from(formulaire.children).length; i++) {
-      let z;
-      if (i % 2 == 1) {
-        z = Array.from(formulaire.children)[i];
-        form.append(z.name, z.value);
-        keepValue.push(z.value);
-        console.log(z);
-      }
-    }
-    addThis();
-    console.log(keepValue);
-    drawRow(keepValue);
-    statu.innerHTML = "submission added!";
-    statu.style.color = "green";
+    infoForm.innerHTML = "please fill in all fields";
+    infoForm.style.color = "red";
   } else {
-    statu.innerHTML = "registration already exists";
-    statu.style.color = "red";
+    verifExist(formulaire.children[1].value);
+    if (luke) {
+      form = new FormData();
+      let keepValue = [];
+      for (let i = 0; i < Array.from(formulaire.children).length; i++) {
+        let z;
+        if (i % 2 == 1) {
+          z = Array.from(formulaire.children)[i];
+          form.append(z.name, z.value);
+          keepValue.push(z.value);
+          console.log(z);
+        }
+      }
+      addThis();
+      console.log(keepValue);
+      drawRow(keepValue);
+      infoForm.innerHTML = "submission added!";
+      infoForm.style.color = "green";
+      luke = false;
+    } else {
+      infoForm.innerHTML = "registration already exists";
+      infoForm.style.color = "red";
+      console.log(luke);
+    }
   }
 });
 
@@ -250,8 +258,11 @@ function verifExist(params) {
       return response.json();
     })
     .then((data) => {
-      // Work with JSON data here
       console.log(data);
+      console.log(typeof data);
+      if (data < 1) {
+        luke = true;
+      }
     })
     .catch((err) => {
       // Do something for an error here
