@@ -225,6 +225,7 @@ formulaire.addEventListener("submit", function (event) {
       drawRow(keepValue);
       infoForm.innerHTML = "submission added!";
       infoForm.style.color = "green";
+      luke = false;
     } else {
       infoForm.innerHTML = "registration already exists";
       infoForm.style.color = "red";
