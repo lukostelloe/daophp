@@ -13,6 +13,7 @@ let form; // Formdata
 let lastId = getLastId(); //get last ID in BDD
 
 let luke = false; // If registration already exist
+// verifExist(formulaire.children[1].value);
 ///******************************************************************FONCTIONS************************************************************** */
 //DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
 function drawRow(element) {
@@ -207,8 +208,7 @@ formulaire.addEventListener("submit", function (event) {
     infoForm.style.color = "red";
   } else {
     verifExist(formulaire.children[1].value);
-    console.log(luke);
-    if (luke == true) {
+    if (luke) {
       form = new FormData();
       let keepValue = [];
       for (let i = 0; i < Array.from(formulaire.children).length; i++) {
@@ -232,7 +232,6 @@ formulaire.addEventListener("submit", function (event) {
       console.log(luke);
     }
   }
-  luke = false;
 });
 
 function modifierParam(params) {

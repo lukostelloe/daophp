@@ -7,6 +7,10 @@ abstract class VoitureDAO extends EntityBase
     {
         $this->id = $id;
     }
+    public function getId()
+    {
+        return $this->id;
+    }
     public function getRegistration()
     {
         return $this->registration;
@@ -57,9 +61,10 @@ abstract class VoitureDAO extends EntityBase
         // if ($immatriculation) $this->read($immatriculation);
     }
 
-    public function __get($id) {
+    public function __get($id)
+    {
         if (property_exists($this, $id)) {
-          return $this->$id;
+            return $this->$id;
         }
-      }
+    }
 }
