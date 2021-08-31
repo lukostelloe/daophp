@@ -16,22 +16,21 @@
       <h2>Register Car</h2>
       <form name="formCar" method="post" action="" id="formulaire">
 
-        <form name="formCar" method="post" action="">
-          <label for="name">Registration</label>
-          <input type="text" name="registration" id="registration" class="inputbox">
 
-          <label for="name">Colour</label>
-          <input type="text" name="colour" id="colour" class="inputbox">
+        <label for="name">Registration</label>
+        <input type="text" name="registration" id="registration" class="inputbox">
 
-          <label for="name">Make</label>
-          <input type="text" name="make" id="make" class="inputbox">
+        <label for="name">Colour</label>
+        <input type="text" name="colour" id="colour" class="inputbox">
 
-          <label for="name">Model</label>
-          <input type="text" name="model" id="model" class="inputbox">
-          <button class="inputbox" id="addcarbutton" type="submit">Add Car</button>
-        </form>
+        <label for="name">Make</label>
+        <input type="text" name="make" id="make" class="inputbox">
 
-        <div id="confirmation"></div>
+        <label for="name">Model</label>
+        <input type="text" name="model" id="model" class="inputbox">
+        <button class="inputbox" id="addcarbutton" type="submit">Add Car</button>
+      </form>
+      <div id="confirmation"></div>
     </div>
 
     <table id="cartable">

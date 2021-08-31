@@ -7,10 +7,13 @@ const reg = document.getElementById("registration");
 const colour = document.getElementById("colour");
 const make = document.getElementById("make");
 const model = document.getElementById("model");
-const status = document.getElementById("confirmation");
+const infoForm = document.getElementById("confirmation");
 
-let form;
-let lastId = getLastId();
+let form; // Formdata
+let lastId = getLastId(); //get last ID in BDD
+
+let luke = false; // If registration already exist
+// verifExist(formulaire.children[1].value);
 ///******************************************************************FONCTIONS************************************************************** */
 //DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
 function drawRow(element) {
@@ -50,7 +53,7 @@ function drawRow(element) {
   row.appendChild(cell);
   let img = document.createElement("img");
   cell.appendChild(img);
-  img.setAttribute("src", "asset/bin.png"); //ICONE POUR MODIFIER
+  img.setAttribute("src", "asset/changement.png");
   img.style.width = "30px";
   img.addEventListener("click", function (event) {
     event.preventDefault();
@@ -109,7 +112,8 @@ function drawRow(element) {
   row.appendChild(cell2);
   let img2 = document.createElement("img");
   cell2.appendChild(img2);
-  img2.setAttribute("src", "asset/bin.png");
+  img2.setAttribute("src", "asset/bin.png"); //ICONE POUR MODIFIER
+
   img2.style.width = "30px";
 
   img2.addEventListener("click", function () {
@@ -192,20 +196,19 @@ function addThis() {
 }
 
 ///////////////////////
-
-formulaire.addEventListener(
-  "submit",
-  function (event) {
-    event.preventDefault();
-    if (
-      reg.value.length == 0 ||
-      colour.value.length == 0 ||
-      make.value.length == 0 ||
-      model.value.length == 0
-    ) {
-      status.innerHTML = "please fill in all fields";
-      status.style.color = "red";
-    } else {
+formulaire.addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (
+    reg.value.length == 0 ||
+    colour.value.length == 0 ||
+    make.value.length == 0 ||
+    model.value.length == 0
+  ) {
+    infoForm.innerHTML = "please fill in all fields";
+    infoForm.style.color = "red";
+  } else {
+    verifExist(formulaire.children[1].value);
+    if (luke) {
       form = new FormData();
       let keepValue = [];
       for (let i = 0; i < Array.from(formulaire.children).length; i++) {
@@ -220,12 +223,16 @@ formulaire.addEventListener(
       addThis();
       console.log(keepValue);
       drawRow(keepValue);
-      status.innerHTML = "submission added!";
-      status.style.color = "green";
+      infoForm.innerHTML = "submission added!";
+      infoForm.style.color = "green";
+      luke = false;
+    } else {
+      infoForm.innerHTML = "registration already exists";
+      infoForm.style.color = "red";
+      console.log(luke);
     }
-  },
-  false
-);
+  }
+});
 
 function modifierParam(params) {
   //envoyer objet [{"",""}] clé valeur dans un array
@@ -244,34 +251,22 @@ function modifierParam(params) {
       console.log("Error Reading data " + err);
     });
 }
-
-//******************************************* */ Fonction a implémenté pour code plus propre
-// function poubelleRow(row) {
-//   // marche pas //
-//   let cell = document.createElement("td");
-//   row.appendChild(cell);
-//   let img = document.createElement("img");
-//   cell.appendChild(img);
-//   img.setAttribute("src", "bin.png");
-//   img.style.width = "30px";
-//   img.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     table.removeChild(row);
-//     deleteThis(element.registration);
-//   });
-// }
-// function modfierRow(row) {
-//   let cell = document.createElement("td");
-//   row.appendChild(cell);
-//   let img = document.createElement("img");
-//   cell.appendChild(img);
-//   img.setAttribute("src", "bin.png"); //ICONE POUR MODIFIER
-//   img.style.width = "30px";
-//   img.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     for (let i = 1; i < Array.from(row.children).length - 2; i++) {
-//       const element = Array.from(row.children)[i];
-//       console.log(element);
-//     }
-//   });
-// }
+function verifExist(params) {
+  // params = JSON.stringify(params);
+  fetch(`./controllerVoiture.php?fonction=verifExist&registration=${params}`)
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(typeof data);
+      if (data < 1) {
+        luke = true;
+      }
+    })
+    .catch((err) => {
+      // Do something for an error here
+      console.log("Error Reading data " + err);
+    });
+}
