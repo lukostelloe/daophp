@@ -1,8 +1,3 @@
-<!-- TODO
-
-add information from database into table,
-get bin button to work,
-get input status of database to turn green on success -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,7 +13,6 @@ get input status of database to turn green on success -->
   <div id="interface">
 
     <div id="input">
-      <!-- method and action to conn.php -->
       <h2>Register Car</h2>
       <form name="formCar" method="post" action="" id="formulaire">
 
