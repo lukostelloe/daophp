@@ -28,6 +28,7 @@ class Voiture extends VoitureDAO
         $sth->bindParam(':id', $id);
         return $sth->execute();
     }
+
     public function modifyRow($dico)
     {
         $dico = json_decode($dico);
@@ -45,12 +46,14 @@ class Voiture extends VoitureDAO
         $sth->bindParam(':model', $model);
         return $sth->execute();
     }
+
     public function getlastID()
     {
         $request = "SELECT MAX(id) FROM cartable;";
         $sth = $this->db->prepare($request);
         return $this->getSelfObjectsPreparedStatement($sth);
     }
+    
     public function verifExist($registration)
     {
         $request = "SELECT * FROM cartable WHERE registration = :registration";
