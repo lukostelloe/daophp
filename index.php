@@ -4,16 +4,23 @@ add information from database into table,
 get bin button to work,
 get input status of database to turn green on success -->
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
+<<<<<<< Updated upstream
   <title>Car Table</title>
   <link rel="stylesheet" href="style.css">
   <script src="modal.js" defer></script>
   <script src="app.js" defer></script>
+=======
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN</title>
+  <link rel="stylesheet" href="style.css">
+>>>>>>> Stashed changes
 </head>
-
 <body>
+<<<<<<< Updated upstream
 <h1 id="title">~ Car Record Input ~</h1>
 <div id="interface">
   
@@ -68,6 +75,23 @@ get input status of database to turn green on success -->
 
 </div>
 
-</body>
+=======
+  <h1>Welcome to the site!</h1>
+  <form action="login.php" method="post">
+    <h2>LOGIN</h2>
+    <?php if (isset($_GET["error"])) { ?>
+      <p class="error"><?php echo $_GET["error"]; ?></p>
+    <?php } ?>
+    <label>User Name</label>
+    <input type="text" name="uname" placeholder="User Name"><br>
 
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password"><br>
+
+    <button type="submit">Login</button>
+    <a href="signup.php" class="ca">Don't have an account? Sign up</a>
+  </form>
+  
+>>>>>>> Stashed changes
+</body>
 </html>
