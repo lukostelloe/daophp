@@ -13,6 +13,7 @@ let form; // Formdata
 let lastId = getLastId(); //get last ID in BDD
 
 let luke = false; // If registration already exist
+let buttonTimer = true;
 // verifExist(formulaire.children[1].value);
 ///******************************************************************FONCTIONS************************************************************** */
 //DESSINE LE TABLEAU prend en argument un Array ou un objet(resultat JSON)
@@ -22,7 +23,6 @@ function drawRow(element) {
   let typeOf = Array.isArray(element) ? true : false;
   if (typeOf) {
     getLastId();
-    console.log(lastId);
     let remplacant;
     for (let i = 0; i < element.length; i++) {
       remplacant = {
@@ -34,7 +34,6 @@ function drawRow(element) {
       };
     }
     element = remplacant;
-    console.log(element);
   }
   for (const key in element) {
     if (Object.hasOwnProperty.call(element, key)) {
@@ -45,13 +44,9 @@ function drawRow(element) {
         row.appendChild(cell);
         cell.innerHTML = elem;
         cell.setAttribute("data-label", key);
-        console.log(cell);
       }
     }
   }
-
-  //test a faire
-
   let cell = document.createElement("td");
   row.appendChild(cell);
   let img = document.createElement("img");
@@ -75,8 +70,6 @@ function drawRow(element) {
         const y = Array.from(row.children)[i].lastChild;
         params.push(y.value);
       }
-      console.log(params);
-      console.log(element);
       for (const key in element) {
         if (Object.hasOwnProperty.call(element, key)) {
           element[key];
@@ -98,9 +91,7 @@ function drawRow(element) {
           }
         }
       }
-      console.log(element);
       modifierParam(element);
-      console.log();
       Array.from(row.children)[0].innerHTML = element["registration"];
       Array.from(row.children)[1].innerHTML = element["colour"];
       Array.from(row.children)[2].innerHTML = element["make"];
@@ -137,7 +128,6 @@ function getLastId() {
     .then((data) => {
       // Work with JSON data here
       lastId = data[0]["MAX(id)"];
-      console.log(lastId);
       // console.log(data[0]["MAX(id)"]);
     })
     .catch((err) => {
@@ -185,7 +175,6 @@ function addThis() {
   $init = { method: "POST", body: form };
   fetch(`./controllerVoiture.php?fonction=addNew`, $init)
     .then((response) => {
-      console.log(response);
       return response.json();
     })
     .then((data) => {
@@ -197,7 +186,10 @@ function addThis() {
       console.log("Error Reading data " + err);
     });
 }
-
+formulaire.children[1].addEventListener("change", function () {
+  verifExist(formulaire.children[1].value);
+  console.log(luke);
+});
 ///////////////////////
 formulaire.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -209,31 +201,28 @@ formulaire.addEventListener("submit", function (event) {
   ) {
     infoForm.innerHTML = "please fill in all fields";
     infoForm.style.color = "red";
-  } else {
-    verifExist(formulaire.children[1].value);
-    if (luke) {
-      form = new FormData();
-      let keepValue = [];
-      for (let i = 0; i < Array.from(formulaire.children).length; i++) {
-        let z;
-        if (i % 2 == 1) {
-          z = Array.from(formulaire.children)[i];
-          form.append(z.name, z.value);
-          keepValue.push(z.value);
-          console.log(z);
-        }
+  }
+  // verifExist(formulaire.children[1].value);
+  else if (luke) {
+    luke = false;
+    form = new FormData();
+    let keepValue = [];
+    for (let i = 0; i < Array.from(formulaire.children).length; i++) {
+      let z;
+      if (i % 2 == 1) {
+        z = Array.from(formulaire.children)[i];
+        form.append(z.name, z.value);
+        keepValue.push(z.value);
       }
-      addThis();
-      console.log(keepValue);
-      drawRow(keepValue);
-      infoForm.innerHTML = "submission added!";
-      infoForm.style.color = "green";
-      luke = false;
-    } else {
-      infoForm.innerHTML = "registration already exists";
-      infoForm.style.color = "red";
-      console.log(luke);
     }
+    addThis();
+    drawRow(keepValue);
+    infoForm.innerHTML = "submission added!";
+    infoForm.style.color = "green";
+    console.log(`luke est ${luke}`);
+  } else {
+    infoForm.innerHTML = "registration already exists";
+    infoForm.style.color = "red";
   }
 });
 
