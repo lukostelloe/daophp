@@ -41,8 +41,11 @@ function drawRow(element) {
       if (key != "id") {
         const elem = element[key];
         let cell = document.createElement("td");
+
         row.appendChild(cell);
         cell.innerHTML = elem;
+        cell.setAttribute("data-label", key);
+        console.log(cell);
       }
     }
   }
@@ -253,6 +256,7 @@ function modifierParam(params) {
 }
 function verifExist(params) {
   // params = JSON.stringify(params);
+  //await fetch
   fetch(`./controllerVoiture.php?fonction=verifExist&registration=${params}`)
     .then((response) => {
       console.log(response);
