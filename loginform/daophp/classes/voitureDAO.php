@@ -3,6 +3,14 @@ require_once 'DAO.php';
 
 abstract class VoitureDAO extends EntityBase
 {
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
     public function getRegistration()
     {
         return $this->registration;
@@ -51,5 +59,12 @@ abstract class VoitureDAO extends EntityBase
         $this->fields = ['registration', 'colour', 'make', 'model'];
         $this->sql = "SELECT * FROM {$this->table}";
         // if ($immatriculation) $this->read($immatriculation);
+    }
+
+    public function __get($id)
+    {
+        if (property_exists($this, $id)) {
+            return $this->$id;
+        }
     }
 }

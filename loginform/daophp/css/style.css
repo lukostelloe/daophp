@@ -1,8 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  display: flex;
-  flex-direction: column;
-  font-size: medium;
-  background-image: url("car.jpg");
+  background-image: url("../asset/car.jpg");
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -10,24 +13,31 @@ body {
 }
 
 #title {
+  width: 400px;
   display: flex;
   justify-content: center;
   color: rgb(0, 0, 0);
+  margin: 20px auto;
+  background-color: #8db8a4;
+  border-radius: 10px;
+  padding: 10px;
 }
-
-#interface {
+.container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
-
 #input {
+  width: 90%;
+  padding: 20px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   text-align: center;
   font-size: large;
-  background-color: #8db8a4;
+  background-color: #8686864b;
+  border-radius: 5px;
 }
 
 #addcarbutton {
@@ -46,31 +56,12 @@ body {
 }
 
 form {
+  padding: 15px;
+  width: 400px;
   display: flex;
   flex-direction: column;
-}
-
-#cartable {
-  float: right;
   background-color: #8db8a4;
-  margin: 50px;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 70%;
-}
-
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #a2b8ad;
+  border-radius: 5px;
 }
 
 /* The Modal (background) */
@@ -93,20 +84,16 @@ tr:nth-child(even) {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 350px; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .close {
+  position: relative;
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+  top: -20px;
+  left: 13px;
 }

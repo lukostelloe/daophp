@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>SIGN UP</title>
-  <link rel="stylesheet" href="stylelogin.css">
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>

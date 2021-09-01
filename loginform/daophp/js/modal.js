@@ -3,6 +3,13 @@ var span = document.getElementsByClassName("close")[0];
 var yes = document.getElementById("yes");
 var cancel = document.getElementById("cancel");
 
+var carbutton = document.getElementById("addcarbutton");
+var statu = document.getElementById("confirmation");
+
+carbutton.addEventListener("click", function () {
+  status.innerHTML = "car added!";
+});
+
 // When the user clicks on (x) or cancel, close the modal
 span.onclick = function () {
   modal.style.display = "none";
@@ -11,15 +18,6 @@ span.onclick = function () {
 cancel.onclick = function () {
   modal.style.display = "none";
 };
-
-//When the user clicks on "yes"
-yes.addEventListener("click", function (event) {
-  modal.style.display = "none";
-  event.preventDefault();
-  table.removeChild(row);
-  deleteThis(element.registration);
-});
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
