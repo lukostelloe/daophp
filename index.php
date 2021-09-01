@@ -4,16 +4,17 @@
 <head>
   <title>Car Table</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/table-css.css">
   <script src="js/modal.js" defer></script>
   <script src="js/app.js" defer></script>
 </head>
 
 <body>
-  <h1 id="title">~ Car Record Input ~</h1>
-  <div id="interface">
+  <h1 id="title" >~ Car Record Input ~</h1>
 
+<div class="container">
     <div id="input">
-      <h2>Register Car</h2>
+      <h1 class="heading">Register A Car</h1>
       <form name="formCar" method="post" action="" id="formulaire">
 
 
@@ -32,19 +33,23 @@
       </form>
       <div id="confirmation"></div>
     </div>
+</div>
+    <div class="table-container">
+        <h1 class="heading">Registred Car</h1>
+        <table class="table" id="cartable">
+            <thead>
+                <tr>
+                    <th>Regist</th>
+                    <th>Colour</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Changes</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
 
-    <table id="cartable">
-      <tr>
-        <!-- <th>ID</th> -->
-        <th>Regist</th>
-        <th>Colour</th>
-        <th>Make</th>
-        <th>Model</th>
-        <th>Changes</th>
-        <th>Delete</th>
-      </tr>
-    </table>
-  </div>
+        </table>
+    </div>
 
 
   <!-- The Modal -->
