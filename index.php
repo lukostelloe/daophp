@@ -10,9 +10,9 @@
 </head>
 
 <body>
-  <h1 id="title" >~ Car Record Input ~</h1>
+  <h1 id="title">~ Car Record Input ~</h1>
 
-<div class="container">
+  <div class="container">
     <div id="input">
       <h1 class="heading">Register A Car</h1>
       <form name="formCar" method="post" action="" id="formulaire">
@@ -30,26 +30,27 @@
         <label for="name">Model</label>
         <input type="text" name="model" id="model" class="inputbox">
         <button class="inputbox" id="addcarbutton" type="submit">Add Car</button>
+        <div id="confirmation"></div>
       </form>
-      <div id="confirmation"></div>
-    </div>
-</div>
-    <div class="table-container">
-        <h1 class="heading">Registred Car</h1>
-        <table class="table" id="cartable">
-            <thead>
-                <tr>
-                    <th>Regist</th>
-                    <th>Colour</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Changes</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
 
-        </table>
     </div>
+  </div>
+  <div class="table-container">
+    <h1 class="heading">Registred Car</h1>
+    <table class="table" id="cartable">
+      <thead>
+        <tr>
+          <th>Regist</th>
+          <th>Colour</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Changes</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+    </table>
+  </div>
 
 
   <!-- The Modal -->
